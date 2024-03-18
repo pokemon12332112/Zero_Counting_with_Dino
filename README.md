@@ -22,28 +22,29 @@ Place the unzipped image directory and density map directory inside the data dir
 
 ## Installation with Conda
 
-conda create -n fscount python=3.7 -y
+python -m venv lcount
 
-conda activate fscount
+lcount/Scripts/activate
 
-python -m pip install matplotlib opencv-python notebook tqdm
+pip install matplotlib opencv-python notebook tqdm
 
-conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.0 -c pytorch
+pip install torch torchvision
 
+pip install -e .
 
 ## Quick demo
 
 Provide the input image and also provide the bounding boxes of exemplar objects using a text file:
 
 ``` bash
-python demo.py --input-image orange.jpg --bbox-file orange_box_ex.txt 
+python main_demo.py --input-image orange.jpg --bbox-file orange_box_ex.txt 
 ```
 
 Use our provided interface to specify the bounding boxes for exemplar objects
 
 
 ``` bash
-python demo.py --input-image orange.jpg
+python main_demo.py --input-image orange.jpg
 ```
 
 
@@ -51,11 +52,11 @@ python demo.py --input-image orange.jpg
 We are providing our pretrained FamNet model, and the evaluation code can be used without the training.
 ### Testing on validation split without adaptation
 ```bash 
-python test.py --data_path /PATH/TO/YOUR/FSC147/DATASET/ --test_split val
+python test_with GD.py --data_path /PATH/TO/YOUR/FSC147/DATASET/ --test_split val
 ```
 ### Testing on val split with adaptation
 ```bash 
-python test.py --data_path /PATH/TO/YOUR/FSC147/DATASET/ --test_split val --adapt
+python test_with GD.py --data_path /PATH/TO/YOUR/FSC147/DATASET/ --test_split val --adapt
 ```
 
 
